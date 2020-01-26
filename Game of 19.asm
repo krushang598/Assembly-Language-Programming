@@ -1,1730 +1,675 @@
-;Krushang Shah
-;Game of 19
+;Game of 19 - By Krushang Shah
+
 .model tiny
-.code
-org 100h
-.386
-
-START:   
-BOARD:   
-
-   mov ax, 0600h
-   mov bh, 01eh
-   mov cx, 0000h
-   mov dx, 184fh
-   int 10h
-   
 
-   ;Draw Bound
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 5
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 6
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   ;mov ah, 13h
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   lea bp, box1
-   mov cx, 46
-   mov dl, 6
-   mov dh, 7
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   lea bp, box1
-   mov cx, 46
-   mov dl, 6
-   mov dh, 8
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 9
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 10
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 11
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 12
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 13
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 14
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 15
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 16
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 17
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 18
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 19
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 20
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 066h
-   mov cx, 46
-   mov dl, 6
-   mov dh, 21
-   lea bp, box1
-   mov ah, 13h
-   int 10h
-   
-   ;make it pretty...
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 6
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 6
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 6
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 6
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 6
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;first copy and paste
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 7
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 7
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 7
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 7
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 7
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;second
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 8
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 8
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 8
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 8
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 8
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;thrid
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 10
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 10
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 10
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 10
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 10
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;four
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 11
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 11
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 11
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 11
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 11
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;five
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 12
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 12
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 12
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 12
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 12
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;six
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 14
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 14
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 14
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 14
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 14
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   ;7
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 15
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 15
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 15
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 15
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 15
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;8
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 16
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 16
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 16
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 16
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 16
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;9
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 18
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 18
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 18
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 18
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 18
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;10
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 19
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 19
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 19
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 19
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 19
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;11
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 8
-   mov dh, 20
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 17
-   mov dh, 20
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 26
-   mov dh, 20
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 35
-   mov dh, 20
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   mov al, 00
-   mov bh, 00
-   mov bl, 0F1h
-   mov cx, 6
-   mov dl, 44
-   mov dh, 20
-   lea bp, boxes
-   mov ah, 13h
-   int 10h
-   
-   ;title and how to	
-   mov al, 1
-   mov bh, 0
-   mov bl, 06Fh
-   mov cx, 80
-   mov dl, 0
-   mov dh, 2
-   lea bp, title_s
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 5
-   lea bp, note
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 6
-   lea bp, note
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 7
-   lea bp, note0
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 8
-   lea bp, note
-   mov ah, 13h
-   int 10h
-
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 9
-   lea bp, note1
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 10
-   lea bp, note2
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 11
-   lea bp, note3
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 12
-   lea bp, note4
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 13
-   lea bp, note5
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 14
-   lea bp, note6
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 15
-   lea bp, note
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 16
-   lea bp, inst
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 17
-   lea bp, note
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 18
-   lea bp, note7
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 22
-   mov dl, 55
-   mov dh, 19
-   lea bp, note8
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2eh
-   mov cx, 21
-   mov dl, 55
-   mov dh, 20
-   lea bp, note9
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 2fh
-   mov cx, 21
-   mov dl, 55
-   mov dh, 21
-   lea bp, note
-   mov ah, 13h
-   int 10h
-
-   ;Numbers
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 10
-   mov dh, 7
-   lea bp, num1
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 19
-   mov dh,7
-   lea bp, num2 
-   mov ah, 13h
-   int 10h
-   
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 28
-   mov dh, 7
-   lea bp, num3
-   mov ah, 13h
-   int 10h
-   
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 37
-   mov dh, 7
-   lea bp, num4
-   mov ah, 13h
-   int 10h
-  
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 46
-   mov dh, 7
-   lea bp, num5
-   mov ah, 13h
-   int 10h
-  
-   mov al, 1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 10
-   mov dh, 11
-   lea bp, num6
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 19
-   mov dh, 11
-   lea bp, num7
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 28
-   mov dh, 11
-   lea bp, num8
-   mov ah, 13h
-   int 10h
-
-   mov al, 1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 37
-   mov dh, 11
-   lea bp, num9
-   mov ah, 13h
-   int 10h
-   
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 46
-   mov dh, 11
-   lea bp, num10
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 10
-   mov dh, 15
-   lea bp, num11
-   mov ah, 13h
-   int 10h
-   
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 19
-   mov dh, 15
-   lea bp, num12
-   mov ah, 13h
-   int 10h
-
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 28
-   mov dh, 15
-   lea bp, num13
-   mov ah, 13h
-   int 10h
-
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 37
-   mov dh, 15
-   lea bp, num14
-   mov ah, 13h
-   int 10h
-   
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 46
-   mov dh, 15
-   lea bp, num15
-   mov ah, 13h
-   int 10h
-
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 10
-   mov dh, 19
-   lea bp, num16
-   mov ah, 13h
-   int 10h
-   
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 19
-   mov dh, 19
-   lea bp, num17
-   mov ah, 13h
-   int 10h
-  
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 28
-   mov dh, 19
-   lea bp, num18
-   mov ah, 13h
-   int 10h
-   
-   mov al,1
-   mov bh, 0
-   mov bl, 70h
-   mov cx, 2
-   mov dl, 37
-   mov dh, 19
-   lea bp, num19
-   mov ah, 13h
-   int 10h
-   
-   mov al, 1
-   mov bh, 0
-   mov bl, 0f1h
-   mov cx, 2
-   mov dl, 37
-   mov dh, 19
-   lea bp, curs
-   mov ah, 13h
-   int 10h
-   
-   ;Put cursor in empty box
-   mov ah,2
-   mov dh,19
-   mov dl,46
-   mov bh,00h
-   int 10h
-
-Control:
-   mov ah, 08h 
-   int 21h 
-   cmp al, 'w' ;basic set up for control wasd
-   je UP
-   cmp al, 'a'
-   je LEFT
-   cmp al, 's'
-   je DOWN
-   cmp al,'d'
-   je RIGHT
-   cmp al, 'r'
-   je BOARD
-   cmp al, 'q'
-   je Exit   
-   jmp Control
-
-UP:  
-	;UpperBound cursor 
-   cmp dh,7
-   je Control
-	;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h     
-   ;space between number
-   add dh,-4  
-   ;relocate cursor according to current position
-   mov ah,2
-   mov dl,dl
-   mov dh,dh
-   mov bh,00
-   int 10h  
-  
-   mov ah,08h
-   mov bh,00
-   int 10h
-   mov bl, ah   
-   
-   add dh, 4   
-   ;sets cursor
-   mov ah, 2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-   ;replace upper
-   mov ah,09h
-   mov al,al
-   mov bl,bl
-   mov cx,01h
-   int 10h   
-   
-   add dh, -4  
-   ;Moves cursor back up   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-   ;Outputs blank space
-   mov ah, 09h
-   mov al, 00h
-   mov bh, 0
-   mov cx,1
-   mov bl,bl
-   int 10h
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h   
-   
-   add dl, 1
-   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,00
-   mov dl,dl
-   int 10h
-   ;read and store num info
-   mov ah,08h
-   mov bh,00
-   int 10h
-
-   mov bl,ah   
-  
-   add dh, 4   
-   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
- 
-   mov ah,09h
-   mov al,al
-   mov bl,bl
-   mov cx,01h
-   int 10h  
-  
-   mov ah,3
-   mov bh,00
-   int 10h
-
-   add dh,-4   
-   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   mov ah,09h
-   mov al,00h
-   mov bl,79h
-   mov cx,01h
-   int 10h  
-
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-
-   add dl, -1
-   ;sets cursor to current blank space
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-   
-   jmp Control
-DOWN:
-
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-   
-   ;lowerbound
-   cmp dh,19
-   je Control   
-   ;change this when space bewteen number change
-   add dh,4  
-   ;moves cursor up
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,00
-   mov dl,dl
-   int 10h
-   
-   ;read above number and store
-   mov ah,08h
-   mov bh,00
-   int 10h
-
-   mov bl, ah
-   add dh,-4  
-   ;cursor back to blank spot again
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-   ;upper number into blank spot
-   mov ah,09h
-   mov al,al
-   mov bl,bl
-   mov cx,01h
-   int 10h     
-   
-   add dh,4  
-   ;cursor goes back up   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   ;Outputs blank space
-   mov ah, 09h
-   mov al, 00h
-   mov bh, 0
-   mov cx,1
-   mov bl,bl
-   int 10h
-
-   ;2Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-   
-   add dl, 1
-   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,00
-   int 10h
-   ;read character above and store
-   mov ah,08h
-   mov bh,00
-   int 10h
-   
-   mov bl,ah  
-   ;change this also when dh space change
-   add dh, -4
-   ;cursor back to original blank spot
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   ;swap the top with blank
-   mov ah,09h
-   mov al,al
-   mov bl,bl
-   mov cx,01h
-   int 10h  
-
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-
-   add dh,4
-         
-   ;sets cursor
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   mov ah,09h
-   mov al,00h
-   mov bl,79h
-   mov cx,01h
-   int 10h  
-
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-
-   add dl, -1
-   ;sets cursor to blank space
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   jmp Control
-
-LEFT: 
-
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-   
-   ;left wall
-   cmp dl,10
-   je Control
-   add dl,-9   
-   ;moves cursor to position above
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,00
-   int 10h
-   
-   ;read amd store operation...
-   mov ah,08h
-   mov bh,00
-   int 10h
-
-   mov bl, ah  
-   
-   add dl,9 
-   ;cursor to blank
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   ;swap
-   mov ah,09h
-   mov al,al
-   mov bl,bl
-   mov cx,01h
-   int 10h     
-   
-   add dl,-9
-   ;cursor into new blank  
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   mov ah, 09h
-   mov al, 00h
-   mov bh, 0
-   mov cx,1
-   mov bl,bl
-   int 10h
-
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-  
-   add dl, 1
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,00
-   mov dl,dl
-   int 10h
-
-   mov ah,08h
-   mov bh,00
-   int 10h
-
-   mov bl,ah   
-   add dl, 9   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-  
-   ;swap right to right blank
-   mov ah,09h
-   mov al,al
-   mov bl,bl
-   mov cx,01h
-   int 10h  
-
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-
-   add dl,-9         
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   ;new blanket space ...
-   mov ah,09h
-   mov al,00h
-   mov bl,79h
-   mov cx,01h
-   int 10h  
-
-   ;Get cursor position and size info
-   mov ah,3
-   mov bh,00
-   int 10h
-
-   add dl, -1
-   ;cursor to blank
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   jmp Control
-
-RIGHT:
-   ;Get cursor position and size info
-   mov bh,00
-   int 10h
-   
-   ;right wall
-   cmp dl,46
-   je Control
-   add dl,9  
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,00
-   mov dl,dl
-   int 10h
-   
-   mov ah,08h
-   mov bh,00
-   int 10h
-
-   mov bl, ah   
-   add dl,-9   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   ;swap 
-   mov ah,09h
-   mov al,al
-   mov bl,bl
-   mov cx,01h
-   int 10h     
-   
-   add dl,9   
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   ;Outputs blank space
-   mov ah, 09h
-   mov al, 00h
-   mov bh, 0
-   mov cx,1
-   mov bl,bl
-   int 10h
-
-   ;Get cursor position and size info 2nd number ex:17 = 1 and 7 
-   mov ah,3
-   mov bh,00
-   int 10h
-   
-   ;dealing with 7
-   add dl, 1
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,00
-   int 10h
-
-   mov ah,08h
-   mov bh,00
-   int 10h
-
-   mov bl,ah   
-   add dl, -9
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-  
-   ;swap 7
-   mov ah,09h
-   mov al,al
-   mov bl,bl
-   mov cx,01h
-   int 10h  
-
-   ;cursor info for next operation
-   mov ah,3
-   mov bh,00
-   int 10h
-
-   add dl,9    
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   mov ah,09h
-   mov al,00h
-   mov bl,79h
-   mov cx,01h
-   int 10h  
-
-   mov ah,3
-   mov bh,00
-   int 10h
-
-   add dl, -1
-   ;cursor to blank space for next operation
-   mov ah,2
-   mov dh,dh
-   mov dl,dl
-   mov bh,0
-   int 10h
-
-   jmp Control
-  
-Exit: 
-; CLEAR SCREEN 
-   mov ax, 0600h 
-   mov bh, 07h 
-   mov cx, 0000h
-   mov dx, 184fh 
-   int 10h 
-
-; end program function 
-   mov ah, 4ch 
-   int 21h 
-
-ret 
-box1 db '                                                   ' , 13, 10, '$'
-boxes db '      ' , 13, 10, '$'
-title_s db '                         Game of 19 - By Krushang Shah                          ', 13, 10, '$'
-inst db  ' -: Instructions:-  ',13, 10, '$'
-note db  '                    ',13, 10, '$'
-note0 db '   -: Controls :-   ',13, 10, '$'
-note1 db '      UP :- W       ',13, 10, '$'
-note2 db '    LEFT :- A       ',13, 10, '$'
-note3 db '    DOWN :- S       ',13, 10, '$'
-note4 db '   RIGHT :- D       ',13, 10, '$'
-note5 db '   RESET :- R       ',13, 10, '$'
-note6 db '    QUIT :- Q       ',13, 10, '$'
-note7 db '   Put the number   ',13, 10, '$'
-note8 db '    inorder from    ',13, 10, '$'
-note9 db '      1 to 19       ',13, 10, '$'
-num1 db '19',13,10,'$'
-num2 db '14',13,10,'$'
-num3 db ' 8',13,10,'$'
-num4 db '17',13,10,'$'
-num5 db ' 1',13,10,'$'
-num6 db ' 6',13,10,'$'
-num7 db ' 5',13,10,'$'
-num8 db '16',13,10,'$'
-num9 db ' 9',13,10,'$'
-num10 db ' 4',13,10,'$'
-num11 db '10',13,10,'$'
-num12 db ' 7',13,10,'$'
-num13 db ' 3',13,10,'$'
-num14 db '18',13,10,'$'
-num15 db '13',13,10,'$'
-num16 db '12',13,10,'$'
-num17 db '15',13,10,'$'
-num18 db '11',13,10,'$'
-num19 db ' 2',13,10,'$'
-curs db 00h,13,10,'$'
-END START
+cseg segment
+    assume cs:cseg, ds:cseg
+    org 100h
+start:
+    jmp realstart
+
+;---------------- CLEAR SCREEN VARIABLES
+
+    WORLDC db 007h          ;World background,foreground color
+    WORLDT db 020h          ;World type
+    SCREEN dw 80*25 dup(?)  ;array for pre-game screen saving
+
+;---------------- BOARD VARIABLES
+
+    ;COLOR
+    TILEC db 074h           ;Tile background,foreground color
+    BOARDC db 002h          ;GameBoard background,foreground color
+
+    ;BOX
+    POS dw 00657            ;Gameboard top left position
+    WIDE dw 00010           ;Gameboard Box Width
+    HEIGHT dw 00002         ;Gameboard Box Height
+
+    ;BOARD DIMENSIONS
+    POS_OFF dw 0            ;Position with byte offset 
+    WIDE_OFF dw 0           ;Box Width with byte offset 
+    BOARD_WIDE dw 0         ;Total Board Width (4*Wide+5)
+    BOARD_WIDE_OFF dw 0     ;Board Width with byte offset 
+    BOARD_HIGH dw 0         ;Board Height with byte offset (4*HEIGHT+5)
+
+    NEWL dw 00072           ;New Line, includes offset.
+                            ;NOTE: For each point reduced/increased in WIDE, 
+                            ;increase/decrease NEWL respectively by 2
+
+;-----------------------GAME VARIABLES
+
+    ;----------------NUMBERS
+	
+    NUMS db 'D97A14GB2H86ECF3IJ5'
+	ORIG db '123456789ABCDEFGHIJ'
+	
+	;----------------TITLE AND INSTRUCTIONS
+	
+	title_s db 'Game of 19 - By Krushang Shah', 13, 10, '$'
+	instructions1 db '   * Arrange the numbers in increasing order.',13,10, '$'
+	instructions2 db '   * Use the arrow keys to move the white tile to swap the number. ',13,10, '$'
+	instructions3 db '   * Press ESC key to exit the game.',13,10, '$'
+	
+	ZERO db ' '
+    Z_INDX dw 19                    ;index location of ' ' in array
+	winMsg db "WINNER!!!$"
+	
+    ;---------------NUMBER POSITIONS
+    NUMS_POS_OFF dw ?               ;Starting position offset
+    NEWL_NUMS dw ?                  ;offset between num lines
+    NEWL_NUMS_HIGH dw ?             ;offset between num lines height
+    
+
+    ;---------------BLANK TILE INFO
+    EMP_UD dw ?                    ;y (up/down) offset for empty tile
+    EMPTY dw 3462                   ;initially loaded with staring  position 
+                                    ;of the zero tile, updated throughout the game
+
+;------------------- MESSAGE BOXES INSTRUCTION AND QUIT
+
+    ;----------- MESSAGE BOX DIMENSIONS
+    MSGBOXL dw 00013            ;Message Box Lenth (+2 for corners)
+    MSGBOXC db 017h             ;Message Box Color
+
+    ;----------- POSITIONS
+    MSG_BOX_0FF dw 01664        ;Starting location for mesage box 
+    TEXT_OFF dw 01826           ;starting location for text in message box
+    NEWL_MBOX dw 00132          ;New line, includes offset for Message box
+
+    ;----------- TEXT
+    QUIT_M1 db 'ARE YOU SURE?'  ;quit message preface
+    QUIT_M2 db ' QUIT? (y/n) '  ;quit message
+    WIN_MSG db '  YOU WON!!  '  ;win message
+    NEW_M1 db '  NEW GAME?  '
+    NEW_M2 db '    (y/n)    '
+    MSG_LEN dw 00013            ;win message length
+    IN_MSG db '    INSTRUCTIONS     use arrows to move   press esc to quit     press any key...  '
+    IN_LEN dw 20                ;Instruction Message Length
+    IN_OFF dw 1496              ;Instruction Message Offset (28,7) = 2*x+160*y
+    IN_NEWL dw 118              ;Instruction Message Offset for new Line
+                                ;160-(IN_LEN*2)-2
+
+;-------------------- TITLE AND INSTRUCTION PRINT
+	
+	TITLES:	
+		mov     ah, 2       ;move cursor function
+		mov		dl, 25		;update cursor
+		mov		dh, 1
+		mov     bh, 0		;page 0
+		int     10h			;move cursor
+		mov		dx, offset title_s
+		mov		ah, 9
+		int		21h
+	RET
+	
+	INSTRUCTIONS:
+	
+		mov     ah, 2       ;move cursor function
+		mov		dl, 0		;update cursor
+		mov		dh, 3
+		mov     bh, 0		;page 0
+		int     10h			;move cursor
+		mov		dx, offset instructions1
+		mov		ah, 9
+		int		21h
+	
+		mov     ah, 2       ;move cursor function
+		mov		dl, 0		;update cursor
+		mov		dh, 4
+		mov     bh, 0		;page 0
+		int     10h			;move cursor
+		mov		dx, offset instructions2
+		mov		ah, 9
+		int		21h
+	
+		mov     ah, 2       ;move cursor function
+		mov		dl, 0		;update cursor
+		mov		dh, 5
+		mov     bh, 0		;page 0
+		int     10h			;move cursor
+		mov		dx, offset instructions3
+		mov		ah, 9
+		int		21h
+	
+	RET
+
+;----------------------- SET THE VARIABLES
+
+	SET_VARS:
+      sub ax,ax
+      sub bx,bx
+          ;POS_OFF (generate reflect byte offset (2*x))
+            mov ax,POS
+            shl ax,1                    ;mul by 2
+            mov POS_OFF,ax
+          ;WIDE_OFF (Generate to reflect byte offset (2*x))
+            mov ax,WIDE
+            shl ax,1                    ;mul by 2
+            mov WIDE_OFF,ax
+          ;BOARD_WIDE: (full board width W/O offset)
+            mov ax,WIDE
+            shl ax,2                    ;mul by 4
+            add ax,5
+            mov BOARD_WIDE,ax
+          ;BOARD_WIDE_OFF: (full board width W/ offset)
+            mov ax,BOARD_WIDE
+            shl ax,1                    ;mul by 2
+            mov BOARD_WIDE,ax
+          ;BOARD_HIGH: (full board height)
+            mov ax,HEIGHT
+            shl ax,2                    ;mul by 4
+            add ax,5
+            mov BOARD_HIGH,ax ;NUMS_POS_OFF
+            mov bx,POS_OFF
+            mov ax,160
+            mov cx,HEIGHT
+            shr cx,1                    ;mul by 2
+            inc cx
+            mul cx                      ; = (HEIGHT/2+1)*160
+            add bx,ax
+            add bx,WIDE
+            mov NUMS_POS_OFF,bx
+          ;NEWL_NUMS
+            mov bx,160
+            mov ax,WIDE_OFF
+            add ax,2
+            shl ax,2                    ; div by 4
+            sub bx,ax                   ; = 160-(WIDE_OFF+2)*4
+            mov NEWL_NUMS,bx
+          ;NEWL_NUMS_HIGH
+            mov ax,160
+            mov cx,HEIGHT
+            mul cx
+            mov NEWL_NUMS_HIGH,ax       ; = 160*HEIGHT
+          ;EMPTY_Y
+            mov ax,HEIGHT
+            inc ax
+            mov cx,160
+            mul cx                      ; = (Height+1)*160
+            mov EMP_UD,ax
+    RET                     ;RET SET_VARS
+
+;-------------------------- SAVE AND RESTORE SCREEN
+
+    SAVE_SCREEN:            ;save L->R,B->T
+        mov si,offset SCREEN
+        sub bx,bx
+        mov cx,25*80
+        SV_SCRN:
+            mov ax,es:[bx]
+            mov [si],ax
+            add si,2
+            add bx,2
+        LOOP SV_SCRN
+    RET                     ;RET SAVE_SCREEN
+
+    RESTORE_SCREEN:
+        mov si,offset SCREEN
+        sub bx,bx
+        mov cx,25*80
+        RST_SCRN:
+            mov ax,[si]
+            mov es:[bx],ax
+            add si,2
+            add bx,2
+        LOOP RST_SCRN
+    RET                     ;RET SAVE_SCREEN
+
+;----------------------------- CLEAR SCREEN
+    CLRSCRN:
+        push ax
+        sub bx,bx
+        mov ah,WORLDC
+        mov al,WORLDT
+        mov cx,25*80
+        CLEAR:
+            mov es:[bx],ax
+            add bx,2
+        LOOP CLEAR
+        mov ax,00100h       ;set text-mode cursor shape
+        mov cx,2607h        ;hide cursor
+        INT 10h             ;text-mode int
+        pop ax
+    RET                     ;CLRSCRN
+   
+;--------------------- PRINTING THE BOARD
+
+DRAW_BOARD:
+        push ax
+        mov bx,POS_OFF              ;Sets intial position for board (TL Corner)
+        mov ah,BOARDC               ;sets board color
+        mov al,0C9h                 ;Top Left Corner Piece
+        mov es:[bx],ax
+        call DRAW_HRZ_LN            ;Build Top Border Box 1
+        mov cx,3                    ;Build Top Border Box 2-4
+        BUILD_TOPBOX_234:                       
+            add bx,2
+            mov al,0CBh             ; T piece
+            mov es:[bx],ax
+            call DRAW_HRZ_LN
+        LOOP BUILD_TOPBOX_234
+        add bx,2
+        mov al,0BBh                 ;Top Right Corner Piece
+        mov es:[bx],ax
+        add bx,NEWL                 ;Move to next line
+        mov cx,HEIGHT
+        BUILD_ROW1_WALLS:           ;Build Row 1 Walls
+            call DRAW_VRT_LN
+            add bx,NEWL
+        LOOP BUILD_ROW1_WALLS
+        mov cx,4
+        BUILD_ROW234:               ;Build Walls & Ceilings, Rows 2,3,4
+            call DRAW_LVL           ;Ceils call
+            add bx,NEWL
+            push cx
+            mov cx,HEIGHT
+            BUILD_WALL234:          ;Walls Call
+                call DRAW_VRT_LN
+                add bx,NEWL
+            LOOP BUILD_WALL234
+            pop cx
+        LOOP BUILD_ROW234
+        mov al,0C8h                 ;Bottom Left Corner Piece
+        mov es:[bx],ax
+        call DRAW_HRZ_LN            ;Build Floor column 1
+        add bx,2
+        mov cx,3
+        BUILD_BTMBOX_234:           ;Builds Board floor for colums 2,3,4
+            mov al,0CAh             ;upside down T piece
+            mov es:[bx],ax
+            call DRAW_HRZ_LN
+            add bx,2
+        LOOP BUILD_BTMBOX_234
+        mov al,0BCh
+        mov es:[bx],ax
+        pop ax
+    RET                             ;RET DRAW_BOARD
+
+    DRAW_HRZ_LN:
+        push cx
+        mov cx,WIDE
+        mov al,0CDh                 ;double horiz. line piece
+        DHL:
+            add bx,2                ;loop adds 2*WIDE to bx (def =20)
+            mov es:[bx],ax
+        LOOP DHL
+        pop cx
+    RET                             ;RET DRAW_HRZ_LN
+
+    DRAW_VRT_LN:
+        push cx
+        mov cx,4                    ;4 COlumns...
+        mov al,0BAh                 ;double horiz. line piece
+        DVL:
+            mov es:[bx],ax
+            add bx,WIDE_OFF
+            add bx,2                
+        LOOP DVL
+        mov es:[bx],ax              
+        pop cx
+    RET                             ;RET DRAW_VRT_LN
+
+    DRAW_LVL:
+        push cx
+        mov al,0CCh
+        mov es:[bx],ax
+        call DRAW_HRZ_LN
+        mov cx,3
+        COLUMNS:
+            add bx,2
+            mov al,0CEh
+            mov es:[bx],ax
+            call DRAW_HRZ_LN
+        LOOP COLUMNS
+        add bx,2
+        mov al,0B9h
+        mov es:[bx],ax
+        pop cx
+    RET                             ;RET DRAW_LVL
+    
+;------------------------ TILES OR BOXES
+
+    BUILD_TILES:                    ;Builds the Game Tiles
+        mov bx,POS_OFF
+        mov cx,5
+        BUILD_COLUMN:
+            push cx
+            mov cx,HEIGHT
+            add bx,160              ;Offset to place tile in board boxes
+            ROW:                    ;Builds ea. Row's tiles
+                push cx
+                mov cx,4            ;4 Rows
+                SUB_ROW:
+                    call SET_TILE
+                    add bx,2
+                LOOP SUB_ROW
+                add bx,NEWL
+                pop cx
+            LOOP ROW
+            pop cx
+       LOOP BUILD_COLUMN
+    RET                             ;RET BUILD_TILES
+
+    SET_TILE:
+        push cx
+        mov cx,wide
+        dec cx
+        mov ah,TILEC
+        mov al,0FFh
+        TILE:
+            add bx,2
+            mov es:[bx],ax
+        LOOP Tile
+        mov ax,030DEh
+        add bx,2
+        mov es:[bx],ax
+        mov ah,TILEC
+        pop cx
+    RET                             ;RET SET_TILE
+
+    EMPTY_TILE:
+        push WIDE
+        sub ah,ah
+        mov al,030h
+        mov bx,EMPTY
+        mov cx,HEIGHT
+        EMPTY_Y:                    
+            push cx
+            mov cx,WIDE
+            EMPTY_X:
+                mov es:[bx],ax
+                add bx,2
+            LOOP EMPTY_X
+            add bx,160
+            sub bx,WIDE_OFF
+            pop cx
+        LOOP EMPTY_Y
+        pop WIDE
+    RET                             ;RET EMPTY_TILE
+
+    SET_NUMS:
+        mov di,NUMS_POS_OFF
+        mov si,offset NUMS
+        mov ah,TILEC
+        mov cx,5
+        NUM_Y:
+            push cx
+            mov cx,4
+            NUM_X:
+                mov al,[si]
+                    cmp al,039h
+                        JNG ASCII_NUMS  ;for values 1-9 
+                    sub di,2            ;offset for '1'
+                    mov bh,TILEC
+                    mov bl,31h          ;'1'
+                    mov es:[di],bx
+                    add di,2
+                    sub al,11h          ;subtract 10 from N={A-F} -> N*={0-5}
+                ASCII_NUMS:
+                    mov es:[di],ax
+                    inc si
+                    add di,WIDE_OFF
+                    add di,2
+            LOOP NUM_X
+            add di,NEWL_NUMS
+            add di,NEWL_NUMS_HIGH
+            pop cx
+        LOOP NUM_Y
+    RET                             ;RET SET_NUMS
+    
+;-------------------EXECUTION INPUT AND OUTPUT
+
+    REDRAW:
+        call DRAW_BOARD
+        call BUILD_TILES
+        call SET_NUMS
+        call EMPTY_TILE 
+    RET                             ;RET REDRAW
+    
+    FIRST_KEY:
+        push ax
+        push bx
+        sub ax,ax                   ; set to zero
+            mov ah,10h                  ;read Keypress Code for INT 16h
+            INT 16h                     ;Interrupt call for input
+    RET                             ;FIRST KEY
+	
+    INPUT:
+        push ax
+        push bx
+        sub ax,ax                   ; set to zero
+        CHECK_AGAIN:
+            mov ah,0                  ;read Keypress Code for INT 16h
+            INT 16h                     ;Interrupt call for input
+            cmp ah,72                 ;'w' == up
+                JZ w
+            cmp ah,75                 ;'a' == left
+                JZ a
+            cmp ah,80                 ;'s' == down
+                JZ s
+            cmp ah,77                 ;'d' == right
+                JZ d
+            cmp al,01Bh                 ;'q' == quit
+                JZ q
+            cmp al,051h
+                jz SHFT_Q
+        jmp CHECK_AGAIN
+        w:
+            call UP
+            jmp check_again
+        a:
+            call LEFT
+            jmp check_again
+        s:
+            call DOWN
+            jmp check_again
+        d:
+            call RIGHT
+            jmp check_again
+        q:
+            call QUIT
+        SHFT_Q:  jmp REAL_QUIT
+    RET                             ;RET INPUT
+
+    RIGHT:
+        cmp Z_INDX,0               ;checks if in right col (illegal)
+            JE END_RIGHT
+        cmp Z_INDX,4               ;checks if in right col (illegal)
+            JE END_RIGHT
+        cmp Z_INDX,8               ;checks if in right col (illegal)
+            JE END_RIGHT
+        cmp Z_INDX,12              ;checks if in right col (illegal)
+            JE END_RIGHT
+		cmp Z_INDX,16              ;checks if in right col (illegal)
+            JE END_RIGHT
+        mov bx,Z_INDX        
+        mov ah,NUMS[bx]     
+        mov al,NUMS[bx-1]  
+        mov NUMS[bx],al
+        mov NUMS[bx-1],ah           
+        sub bx,1                   
+        mov Z_INDX,bx             
+        mov bx,EMPTY
+        sub bx,WIDE_OFF
+        sub bx,2
+        mov EMPTY,bx
+        call BUILD_TILES
+        call SET_NUMS               
+        call EMPTY_TILE
+        END_RIGHT:
+    RET                             ;RET RIGHT
+
+    LEFT:
+        cmp Z_INDX,3                ;checks if in left col (illegal)
+            JE END_LEFT
+        cmp Z_INDX,7                ;checks if in left col (illegal)
+            JE END_LEFT
+        cmp Z_INDX,11               ;checks if in left col (illegal)
+            JE END_LEFT
+        cmp Z_INDX,15               ;checks if in left col (illegal)
+            JE END_LEFT
+		cmp Z_INDX,19               ;checks if in left col (illegal)
+            JE END_LEFT
+        mov bx,Z_INDX               ;sets index for empty value
+        mov ah,NUMS[bx]             ;grab empty tile
+        mov al,NUMS[bx+1]           ;grab shifted tile
+        mov NUMS[bx],al             ;shift empty tile
+        mov NUMS[bx+1],ah           ;shift desired tile
+        add bx,1                    ;re-index
+        mov Z_INDX,bx               ;save re-index
+        mov bx,EMPTY
+        add bx,WIDE_OFF
+        add bx,2
+        mov EMPTY,bx
+        call BUILD_TILES
+        call SET_NUMS               
+        call EMPTY_TILE
+        END_LEFT:
+    RET                             ;RET LEFT
+
+    UP:
+        cmp Z_INDX,15               ;checks if in top row (illegal)
+            JG END_UP
+        mov bx,Z_INDX            
+        mov ah,NUMS[bx]         
+        mov al,NUMS[bx+4]      
+        mov NUMS[bx],al       
+        mov NUMS[bx+4],ah    
+        add bx,4            
+        mov Z_INDX,bx      
+        mov bx,EMPTY
+        add bx,EMP_UD;EMPTY_Y
+        mov EMPTY,bx
+        call BUILD_TILES
+        call SET_NUMS               
+        call EMPTY_TILE
+        END_UP:
+    RET                             ;RET UP
+
+    DOWN:                           
+        cmp Z_INDX,4                ;checks if in bottom row (illegal)
+            JL END_DOWN
+        mov bx,Z_INDX     
+        mov ah,NUMS[bx]    
+        mov al,NUMS[bx-4]          
+        mov NUMS[bx],al           
+        mov NUMS[bx-4],ah        
+        sub bx,4                
+        mov Z_INDX,bx          
+        mov bx,EMPTY
+        sub bx,EMP_UD
+        mov EMPTY,bx
+        call BUILD_TILES
+        call SET_NUMS               
+        call EMPTY_TILE
+        END_DOWN:
+    RET                             ;RET DOWN
+
+    QUIT:
+        call MSGBOX
+        call PRINT_QUIT
+        sub ax,ax
+        mov ah,10h                  ;Read keypress code for INT 16h
+        INT 16h
+        cmp al,079h                 ;'y'
+            jz TERM_JMP
+        call REDRAW
+        jmp CHECK_AGAIN
+        TERM_JMP:
+            jmp REAL_QUIT
+    RET                             ;RET QUIT
+	
+;------------------------ MESSAGE BOXES EXECUTION
+    MSGBOX:                          
+        push WIDE               ;store "wide" to be modified for DRAW_HRZ_LN
+        mov bx,MSG_BOX_0FF      ;Starting location (32,10)
+        mov ah,MSGBOXC
+        mov al,0C9h             ;Top Left Corner
+        mov es:[bx],ax
+        mov cx,MSGBOXL
+        mov WIDE,cx
+        call DRAW_HRZ_LN
+        add bx,2
+        mov al,0BBh             ;Top Right Corner
+        mov es:[bx],ax
+        mov cx,2
+        MSG_BODY:               ;Creates 2 line high message space
+            push cx
+            add bx,NEWL_MBOX    ;next line offset
+            mov al,0BAh         ;Left Border
+            mov es:[bx],ax
+            mov al,020h         ;Space
+            mov cx,MSGBOXL
+            MSG_SPACE:          ;Creates Message 'space'
+                add bx,2
+                mov es:[bx],ax
+            LOOP MSG_SPACE
+            add bx,2
+            mov al,0BAh         ;Right Border
+            mov es:[bx],ax
+            pop cx
+        LOOP MSG_BODY
+        add bx,NEWL_MBOX        ;Next Line offset
+        mov al,0C8h             ;Bottom Left Corner
+        mov es:[bx],ax
+        call DRAW_HRZ_LN
+        add bx,2
+        mov al,0BCh             ;Bottom Right Corner 
+        mov es:[bx],ax
+        sub ax,ax
+        pop ax                  ;Restore 'WIDE'
+        mov WIDE,ax
+        sub ax,ax
+    RET                             ;RET QUITBOX
+
+    PRINT_QUIT:
+        mov di,TEXT_OFF
+        mov si,offset QUIT_M1
+        mov ah,MSGBOXc
+        mov cx,MSG_LEN
+        Q1:
+            mov al,[SI]
+            mov es:[di],ax
+            inc si
+            add di,2
+        LOOP Q1
+        mov di,TEXT_OFF
+        add di,160
+        mov si,offset QUIT_M2
+        mov cx,MSG_LEN
+        Q2:
+            mov al,[SI]
+            mov es:[di],ax
+            inc si;QUIT_M2
+            add di,2
+        LOOP Q2
+    RET                             ;RET PRINT_MSG
+
+;------------------------CODE WITH ONLY CALLS TO THE ABOVE BLOCKS
+
+REALSTART:
+    push ax
+    mov cx,0b800h       ;Begin display mode...
+    mov es,cx
+    call SET_VARS
+    call SAVE_SCREEN
+	call CLRSCRN
+    call DRAW_BOARD
+    call BUILD_TILES
+    call SET_NUMS
+    call EMPTY_TILE
+	call TITLES
+	call INSTRUCTIONS
+	call INPUT
+	
+	
+REAL_QUIT:
+    call RESTORE_SCREEN
+    mov ax,00100h       ;set text-mode cursor shape
+    mov cx,060Eh        ;restore cursor
+    INT 10h             ;text-mode int
+    pop ax
+    int 20h
+	
+cseg ENDS
+    END start
